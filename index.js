@@ -3,7 +3,7 @@ const express = require('express')
 const port = 3000
 const app = express()
 
-// importerar moduler från data.js filen
+// importerar moduler från data.js filen 
 const dataBase = require('./data')
 
 app.use(express.json())
