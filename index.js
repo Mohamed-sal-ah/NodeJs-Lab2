@@ -3,7 +3,7 @@ const express = require('express')
 const port = 3000
 const app = express()
 
-// importerar moduler från data.js filen 
+// Imports modules from data.js file
 const dataBase = require('./data')
 
 app.use(express.json())
@@ -11,7 +11,7 @@ app.use(express.urlencoded({ extended: true }))
 
 app.get('/',dataBase.jsonData)
 
-// Sätter in get och post för todo
+// Inserts Get and Post for todo
 app.get('/todo',dataBase.showAllData)
 app.post('/todo/add',dataBase.createTodo);
 app.post('/todo/delete',dataBase.deleteTodo);
