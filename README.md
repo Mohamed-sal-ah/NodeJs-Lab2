@@ -1,3 +1,3 @@
 # NodeJs-Lab2
 
-This is Second Lab for NodesJs with mySql database
+This is Second Lab for NodesJs with MySQL database
