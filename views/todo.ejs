@@ -1,40 +1,38 @@
-<h1>VG Uppgiften Labb2</h1>
-<h3>Todo lista</h3>
+<h1>MySQL Todo list</h1>
 <ul>
-    <!-- Skriver lista från tabellen -->
-    <% 
-        todo_list.forEach((todoItem) => {
-            %><li>
-                <p><%= todoItem.todo_text %></p>
-                <form action="/todo/delete" method="POST">
-                    <!-- Postar med id för att ta bort rätt knapp -->
-                    <button name="del_id" value="<%= todoItem.id %>">Delete</button>
-                </form>
-                <form class="edit-action" action="/todo/edit" method="POST" style="display: none;">
-                    <!-- postar till edit med edit_id som är array; -->
-                    <input class="valueChange" type="text" name="edit_id[0]" value="<%= todoItem.todo_text  %>">
-                     <button class="confirm-edit" name="edit_id[1]"" value="<%= todoItem.id %>">Confirm Edit</button>
-                </form>
-                    <button class="edit-btn">Edit</button>
-            </li>
-            <%
-        })
-    %>
+    <!-- Writes a list of todo -->
+    <% todo_list.forEach((todoItem)=> {
+        %><li>
+            <p>
+                <%= todoItem.todo_text %>
+            </p>
+            <form action="/todo/delete" method="POST">
+                <!-- Delete todo with id -->
+                <button name="del_id" value="<%= todoItem.id %>">Delete</button>
+            </form>
+            <form class="edit-action" action="/todo/edit" method="POST" style="display: none;">
+                <!-- Edit todo with id-->
+                <input class="valueChange" type="text" name="edit_id[0]" value="<%= todoItem.todo_text  %>">
+                <button class="confirm-edit" name="edit_id[1]"" value=" <%=todoItem.id %>">Confirm Edit</button>
+            </form>
+            <button class="edit-btn">Edit</button>
+        </li>
+        <% }) %>
 </ul>
 <form action="/todo/add" method="POST">
-    <!-- Postar en ny rad i lista -->
+    <!-- Post a new todo in the list -->
     <input type="text" name="new_todo" placeholder="write todo">
     <button>Submit todo</button>
 </form>
 <script>
     const editBtn = document.getElementsByClassName('edit-btn');
     const formEdit = document.getElementsByClassName('edit-action');
-    //forloop för editBtn element
+    // forloop editBtn element
     for (let index = 0; index < editBtn.length; index++) {
-            editBtn[index].addEventListener('click', (event) => {
-                // en editBtn är redan clickad
+        editBtn[index].addEventListener('click', (event) => {
+            // Edit button clicked
             event.target.style.display = 'none';
-            formEdit[index].style.display= 'block';
-        })    
+            formEdit[index].style.display = 'block';
+        })
     }
 </script>
